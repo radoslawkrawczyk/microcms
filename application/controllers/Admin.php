@@ -25,9 +25,11 @@ class Admin extends CI_Controller
 
     public function install()
     {
+        $this->load->helper('url');
+
         $this->load->model('admindb');
-        if ($this->admin->install()) {
-            echo 'Already installed!';
+        if ($this->admindb->install()) {
+            redirect('/admin/login');
         }
     }
 
@@ -47,6 +49,8 @@ class Admin extends CI_Controller
 
                 redirect('/admin/dashboard');
             }
+            else
+                redirect('/admin/login');
         }
     }
 

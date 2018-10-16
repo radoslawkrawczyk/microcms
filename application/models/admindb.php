@@ -6,6 +6,9 @@ class admindb extends CI_Model
     public function checkIfInstalled()
     {
         $this->load->database();
+        if (!$this->db->table_exists('user_admin') || !$this->db->table_exists('user_data') || !$this->db->table_exists('user_menu')) {
+            return false;
+        }
         $this->db->from('user_admin');
         $query = $this->db->get();
         if (empty($query->result_array())) {
@@ -20,6 +23,17 @@ class admindb extends CI_Model
         $this->load->database();
         $user = $this->input->post('username');
         $pass = hash("sha256", $this->input->post('password'));
+        if (!$this->db->table_exists('user_admin')) {
+           
+           $query = ($this->db->query('CREATE TABLE "user_admin" ( `username` TEXT NOT NULL DEFAULT \'admin\', `password` TEXT )'));
+
+        }
+        if (!$this->db->table_exists('user_data')) {
+            $this->db->query('CREATE TABLE "user_data" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `text` TEXT, `date` TEXT NOT NULL, `desc` TEXT )');
+        }
+        if (!$this->db->table_exists('user_menu')) {
+            $this->db->query('CREATE TABLE `user_menu` ( `user_menu_id` INTEGER PRIMARY KEY AUTOINCREMENT, `link-name` TEXT NOT NULL, `link-short` INTEGER NOT NULL )');
+        }
         $this->db->from('user_admin');
         $query = $this->db->get();
         if (empty($query->result_array())) {

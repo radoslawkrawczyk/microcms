@@ -10,7 +10,7 @@
 <div class="container">
 <h1>Step #1:</h1>
 <p>Type your username and password:</p>
-<form action="/api/install" method="post">
+<form action="/admin/install" method="post">
     <input type="text" name="username" placeholder="Username" required>
     <input type="password" name="pass" placeholder="Password" required>
     <hr>
