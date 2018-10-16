@@ -69,10 +69,12 @@ class Admin extends CI_Controller
         $query = $this->apidb->getText(null);
 
         if ($this->session->logged_in) {
-            $data = ['user' => $this->session->user,
-            'content' => 'text',
-            'list' => $query];
-            
+            $data = [
+                'user' => $this->session->user,
+                'content' => 'text',
+                'list' => $query,
+            ];
+
             $this->load->view('admin/dashboard', $data);
         } else {
             $this->load->helper('url');
@@ -82,13 +84,56 @@ class Admin extends CI_Controller
 
     public function textAdd()
     {
+        $this->load->library('session');
+
+        $this->load->model('admindb');
+        $this->load->helper('url');
+        if ($this->session->logged_in) {
+            if ($this->admindb->addText()) {
+                redirect('/admin/text');
+            }
+        }
+
+    }
+
+    public function edit()
+    {
+        $this->load->library('session');
+        $this->load->model('apidb');
+        $query = $this->apidb->getText(null); //calls null to get all the items
+
+        if ($this->session->logged_in) {
+            $data = ['user' => $this->session->user,
+                'content' => 'edit',
+                'list' => $query];
+
+            $this->load->view('admin/dashboard', $data);
+        } else {
+            $this->load->helper('url');
+            redirect('/admin/login');
+        }
+    }
+
+    public function editPost()
+    {
+        $this->load->library('session');
         $this->load->model('admindb');
         $this->load->helper('url');
 
-        if ($this->admindb->addText()) {
-            redirect('/admin/text');
-        }
+        if ($this->session->logged_in) {
+            $id = $this->input->post('text_id');
+            $desc = $this->input->post('text_desc');
+            $content = $this->input->post('text_content');
 
+            if ($this->admindb->updateText($id, $desc, $content)) {
+
+                redirect('admin/text/edit');
+            }
+
+        } else {
+
+            redirect('/admin/login');
+        }
     }
 
     public function logout()

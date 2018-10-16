@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="http://localhost:8005/admin/dashboard">Dashboard</a>
+        <a class="navbar-brand" href="/admin/dashboard">Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -19,10 +19,10 @@
           <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:8005/admin/text/add">Add Text</a>
+              <a class="nav-link" href="/admin/text/add">Add Text</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Edit</a>
+              <a class="nav-link" href="/admin/text/edit">Edit</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Build menu</a>
@@ -39,6 +39,7 @@
         <h1>Hello, <?php echo $this->session->user; ?>!</h1>  <?php } ?>
         <div id="content">
         <?php if (!empty($content) && $content === 'text') { $this->load->view('admin/text'); }?>
+        <?php if (!empty($content) && $content === 'edit') { $this->load->view('admin/edit'); }?>
         </div>
         <?php if (empty($content)) { ?>
         <p>All your texts are listed in the Texts List in the upper menu.</p>

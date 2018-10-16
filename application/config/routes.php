@@ -64,6 +64,8 @@ $route['admin/signin']['POST'] = 'admin/logged';
 $route['admin/dashboard'] = 'admin/dashboard';
 $route['admin/text/add'] = 'admin/text';
 $route['admin/text/add/post']['POST'] = 'admin/textAdd';
+$route['admin/text/edit'] = 'admin/edit';
+$route['admin/text/edit/post']['POST'] = 'admin/editPost';
 
 $route['admin/logout'] = 'admin/logout';
 

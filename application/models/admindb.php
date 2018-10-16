@@ -56,5 +56,10 @@ class admindb extends CI_Model
         return true;
     }
 
-
+    public function updateText($id, $desc, $content)
+    {
+        $this->load->database();
+        $query = $this->db->query('UPDATE `user_data` SET text = "'.$content.'", desc = "'.$desc.'" WHERE id='.$id);
+        return $query;
+    }
 }
