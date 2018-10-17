@@ -140,6 +140,16 @@ class Admin extends CI_Controller
         }
     }
 
+    public function remove() {
+        $textId = ($this->input->post('text_id_del'));
+        $this->load->model('admindb');
+        $this->admindb->deleteText($textId);
+
+        $this->load->helper('url');
+
+        redirect('/admin/text/edit');
+    }
+
     public function logout()
     {
         $this->load->library('session');

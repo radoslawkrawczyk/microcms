@@ -48,4 +48,5 @@ foreach($list as $item) { ?>
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}</style>
+}
+</style>

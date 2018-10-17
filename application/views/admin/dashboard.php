@@ -25,7 +25,7 @@
               <a class="nav-link" href="/admin/text/edit">Edit</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Build menu</a>
+              <a class="nav-link" href="#">Upload</a>
             </li>
 
           </ul>
@@ -47,4 +47,4 @@
         <?php } ?>
 </div>
 </body>
-</html>
+</html> 

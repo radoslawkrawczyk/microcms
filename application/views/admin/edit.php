@@ -33,17 +33,13 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
-                       
+                       <form action="/admin/text/edit/remove" method="post" style="margin-top: 5px">
+                       <input type="hidden" name="text_id_del" value="" id="text_id_del">
+                       <button type="submit" class="btn btn-small btn-danger">Remove</button></form>
                         </div>
         </div>
     </div>
         <script>
-            function formatDate(date)
-            {
-                console.log(date);
-                parseInt(date);
-            }
-
             let sel = document.getElementById("edit_text");
             sel.addEventListener("change", function() {
                 let opt = sel.options[sel.selectedIndex].value;
@@ -52,6 +48,7 @@
                     if (resp['id'] > 0) {
                       document.getElementById("loaded_res").innerHTML = resp['id']+" | "+resp['desc'];
                       document.getElementById("text_id").value = resp['id'];
+                      document.getElementById("text_id_del").value = resp['id'];
                       document.getElementById("date_res").innerHTML = new Date(parseInt(resp['date'])*1000);
                       document.getElementById("text_desc").value = resp['desc'];
                       document.getElementById("text_content").innerHTML = resp['text'];

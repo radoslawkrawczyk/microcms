@@ -76,4 +76,10 @@ class admindb extends CI_Model
         $query = $this->db->query('UPDATE `user_data` SET text = "'.$content.'", desc = "'.$desc.'" WHERE id='.$id);
         return $query;
     }
+
+    public function deleteText($textId) {
+        $this->load->database();
+        $query = $this->db->query('DELETE FROM `user_data` WHERE id = '.$textId);
+        return $query;
+    }
 }

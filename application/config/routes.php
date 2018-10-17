@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = false;
 
 
 $route['api/test'] = 'api/test';
@@ -66,6 +66,7 @@ $route['admin/text/add'] = 'admin/text';
 $route['admin/text/add/post']['POST'] = 'admin/textAdd';
 $route['admin/text/edit'] = 'admin/edit';
 $route['admin/text/edit/post']['POST'] = 'admin/editPost';
+$route['admin/text/edit/remove']['POST'] = 'admin/remove';
 
 $route['admin/logout'] = 'admin/logout';
 
