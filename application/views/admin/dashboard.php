@@ -22,10 +22,10 @@
               <a class="nav-link" href="/admin/text/add">Add Text</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/text/edit">Edit</a>
+              <a class="nav-link" href="/admin/text/edit">Edit Texts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Upload</a>
+              <a class="nav-link" href="#">Upload Files</a>
             </li>
 
           </ul>
@@ -44,7 +44,10 @@
         <?php if (empty($content)) { ?>
         <p>All your texts are listed in the Texts List in the upper menu.</p>
         <p>To get content of the text send a <strong>GET</strong> request to <code>/api/text/{id}</code> with <code>{id}</code> changed to your resource ID</p>
+        <hr>
+        <p><small>Would you like to <a href="#">edit your password</a>?</small></p>
         <?php } ?>
+
 </div>
 </body>
 </html> 

@@ -35,6 +35,11 @@ class Admin extends CI_Controller
 
     public function login()
     {
+        $this->load->library('session');
+        if ($this->session->logged_in) {
+            $this->load->helper('url');
+            redirect('admin/dashboard');
+        }
         $this->load->view('admin/login');
 
     }

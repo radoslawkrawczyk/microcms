@@ -13,9 +13,8 @@ class admindb extends CI_Model
         $query = $this->db->get();
         if (empty($query->result_array())) {
             return false;
-        } else {
-            return true;
         }
+        return true; 
     }
 
     public function install()
