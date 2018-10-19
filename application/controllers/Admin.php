@@ -48,15 +48,20 @@ class Admin extends CI_Controller
     {
         $this->load->helper('url');
         $this->load->model('admindb');
-        if ($this->admindb->getUser()) {
+        $user = $this->input->post('username');
+        $pass = $this->input->post('pass');
+
+
+        if ($this->admindb->getUser($user, $pass)) {
             $this->load->library('session');
             if ($this->session->logged_in) {
 
                 redirect('/admin/dashboard');
             }
-            else
-                redirect('/admin/login');
+           
         }
+        else
+        redirect('/admin/login');
     }
 
     public function dashboard()

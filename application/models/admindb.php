@@ -21,7 +21,7 @@ class admindb extends CI_Model
     {
         $this->load->database();
         $user = $this->input->post('username');
-        $pass = hash("sha256", $this->input->post('password'));
+        $pass = hash("sha256", $this->input->post('pass'));
         if (!$this->db->table_exists('user_admin')) {
            
            $query = ($this->db->query('CREATE TABLE "user_admin" ( `username` TEXT NOT NULL DEFAULT \'admin\', `password` TEXT )'));
@@ -41,16 +41,18 @@ class admindb extends CI_Model
         return true;
     }
 
-    public function getUser()
+
+
+    public function getUser($user, $pass)
     {
         $this->load->database();
-        $user = $this->input->post('username');
-        $pass = hash("sha256", $this->input->post('password'));
-
-        $query = $this->db->query('SELECT * FROM user_admin WHERE `username` ="'.$user.'" AND `password`='.'"'.$pass.'"');
+        
+        $pass = hash("sha256", $pass);
+        $query = $this->db->query('SELECT * FROM user_admin WHERE `username` ="'.$user.'"');
         $this->load->library('session');
-   
-        if ($query->num_rows() == 0) {
+        $query = $query->result_array();
+
+        if ($query[0]['password'] != $pass) {
             return false;
         } else {
             $this->session->set_userdata([
