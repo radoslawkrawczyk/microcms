@@ -30,7 +30,7 @@
 
           </ul>
           <span class="navbar-text">
-      <a href="/admin/logout">Logout</a>
+      <a href="/admin/logout">Logout, <?php echo $user?></a>
     </span>
         </div>
 </div>

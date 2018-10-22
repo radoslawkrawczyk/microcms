@@ -31,7 +31,11 @@ class admindb extends CI_Model
             $this->db->query('CREATE TABLE "user_data" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `text` TEXT, `date` TEXT NOT NULL, `desc` TEXT )');
         }
         if (!$this->db->table_exists('user_menu')) {
-            $this->db->query('CREATE TABLE `user_menu` ( `user_menu_id` INTEGER PRIMARY KEY AUTOINCREMENT, `link-name` TEXT NOT NULL, `link-short` INTEGER NOT NULL )');
+            $this->db->query('CREATE TABLE `user_files` (
+                `id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+                `path`	TEXT NOT NULL UNIQUE,
+                `date`	INTEGER NOT NULL
+            );');
         }
         $this->db->from('user_admin');
         $query = $this->db->get();
