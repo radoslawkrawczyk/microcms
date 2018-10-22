@@ -25,7 +25,7 @@
               <a class="nav-link" href="/admin/text/edit">Edit Texts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Upload Files</a>
+              <a class="nav-link" href="/admin/upload">Upload Files</a>
             </li>
 
           </ul>
@@ -40,14 +40,47 @@
         <div id="content">
         <?php if (!empty($content) && $content === 'text') { $this->load->view('admin/text'); }?>
         <?php if (!empty($content) && $content === 'edit') { $this->load->view('admin/edit'); }?>
+        <?php if (!empty($content) && $content === 'upload') { $this->load->view('admin/upload'); }?>
         </div>
         <?php if (empty($content)) { ?>
         <p>All your texts are listed in the Texts List in the upper menu.</p>
         <p>To get content of the text send a <strong>GET</strong> request to <code>/api/text/{id}</code> with <code>{id}</code> changed to your resource ID</p>
         <hr>
-        <p><small>Would you like to <a href="#">edit your password</a>?</small></p>
+        <p><small>Would you like to <a href="#" id="passwordEditLink">edit your password</a>?</small></p>
+        <div class="row" id="passwordChangeForm" style="display: none;">
+        <div class="col-md-6 col-12">
+        <form action="/admin/password" method="post">
+          <div class="form-group">
+                <label for="currentPassword">Your current password</label>
+              <input type="password" class="form-control"  name="currentPassword" id="currentPassword" placeholder="">
+              <small class="form-text text-muted">You will logged out after changing your password</small>
+              <small class="form-text text-muted">Passwords can't be the same</small>
+              <label for="newPassword">Your new password</label>
+              <input type="password" class="form-control"  name="newPassword" id="newPassword" placeholder="">
+              <small class="form-text text-muted">You should use some numbers and special characters</small>
+              </div>
+              <input type="submit" class="btn btn-primary " value="Change password">
+          
+        </form>
+        </div>
+        </div>
         <?php } ?>
 
+<script>
+    let formTrigger = document.getElementById("passwordEditLink");
+    let passwordForm = document.getElementById("passwordChangeForm");
+
+    formTrigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (passwordForm.style.display === "none") {
+        passwordForm.style.display = 'block';
+      }
+      else {
+        passwordForm.style.display = 'none';
+
+      }
+    });
+  </script>
 </div>
 </body>
 </html> 

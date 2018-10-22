@@ -46,11 +46,13 @@ class Admin extends CI_Controller
 
     public function logged()
     {
+        $user = $this->input->post('username');
+        $pass = hash("sha256", $this->input->post('password'));
+
         $this->load->helper('url');
         $this->load->model('admindb');
         $user = $this->input->post('username');
         $pass = $this->input->post('pass');
-
 
         if ($this->admindb->getUser($user, $pass)) {
             $this->load->library('session');
@@ -58,22 +60,37 @@ class Admin extends CI_Controller
 
                 redirect('/admin/dashboard');
             }
-           
+
+        } else {
+            redirect('/admin/login');
         }
-        else
-        redirect('/admin/login');
+
     }
 
     public function dashboard()
     {
+
         $this->load->library('session');
-        if ($this->session->logged_in) {
+
+        if ($this->session->logged_in === true) {
             $data = ['user' => $this->session->user];
             $this->load->view('admin/dashboard', $data);
         } else {
             $this->load->helper('url');
             redirect('/admin/login');
         }
+    }
+
+    public function password()
+    {
+        $this->load->model('admindb');
+        $currentPassword = $this->input->post('currentPassword');
+        $newPassword = $this->input->post('newPassword');
+
+        echo hash("sha256", 'qwerty');
+        echo "<br>";
+        echo ($this->admindb->checkPass('qwerty'));
+
     }
 
     public function text()
@@ -150,7 +167,8 @@ class Admin extends CI_Controller
         }
     }
 
-    public function remove() {
+    public function remove()
+    {
         $textId = ($this->input->post('text_id_del'));
         $this->load->model('admindb');
         $this->admindb->deleteText($textId);
@@ -158,6 +176,20 @@ class Admin extends CI_Controller
         $this->load->helper('url');
 
         redirect('/admin/text/edit');
+    }
+
+    public function upload()
+    {
+        $this->load->library('session');
+        if ($this->session->logged_in) {
+            $data = ['user' => $this->session->user,
+                'content' => 'upload'];
+
+            $this->load->view('admin/dashboard', $data);
+        } else {
+            $this->load->helper('url');
+            redirect('/admin/login');
+        }
     }
 
     public function logout()
