@@ -6,7 +6,7 @@ class admindb extends CI_Model
     public function checkIfInstalled()
     {
         $this->load->database();
-        if (!$this->db->table_exists('user_admin') || !$this->db->table_exists('user_data') || !$this->db->table_exists('user_menu')) {
+        if (!$this->db->table_exists('user_admin') || !$this->db->table_exists('user_data') || !$this->db->table_exists('user_files')) {
             return false;
         }
         $this->db->from('user_admin');
