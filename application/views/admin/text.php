@@ -35,7 +35,7 @@ foreach($list as $item) { ?>
       <td><? echo "<code>/api/text/".$item->id."</code>";?></td>
       <td><?echo date('y-m-d H:i', $item->date);?></td>
     </tr>
-    <? } ?>
+    <?php } ?>
   </tbody>
 </table>
 

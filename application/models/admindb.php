@@ -30,7 +30,7 @@ class admindb extends CI_Model
         if (!$this->db->table_exists('user_data')) {
             $this->db->query('CREATE TABLE "user_data" ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `text` TEXT, `date` TEXT NOT NULL, `desc` TEXT )');
         }
-        if (!$this->db->table_exists('user_menu')) {
+        if (!$this->db->table_exists('user_files')) {
             $this->db->query('CREATE TABLE `user_files` (
                 `id`	INTEGER PRIMARY KEY AUTOINCREMENT,
                 `path`	TEXT NOT NULL UNIQUE,

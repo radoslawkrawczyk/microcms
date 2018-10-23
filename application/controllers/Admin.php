@@ -10,7 +10,7 @@ class Admin extends CI_Controller
         if ($this->admindb->checkIfInstalled()) {
             $this->load->library('session');
             if ($this->session->logged_in) {
-
+                
                 redirect('/admin/dashboard');
             } else {
                 redirect('/admin/login');
