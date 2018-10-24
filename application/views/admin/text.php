@@ -30,7 +30,7 @@
   <?php
 foreach($list as $item) { ?>
     <tr>
-      <th><? echo $item->desc; ?></th>
+      <td class="content-td"><? echo $item->desc; ?></td>
       <td class="content-td"><? echo $item->text; ?></td>
       <td><? echo "<code>/api/text/".$item->id."</code>";?></td>
       <td><?echo date('y-m-d H:i', $item->date);?></td>

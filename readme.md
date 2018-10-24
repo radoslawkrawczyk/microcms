@@ -30,3 +30,11 @@ This microCMS allows you to send a `GET` request to endpoint showed in the admin
 }
 ```
 Sending request without ID given `[GET] /api/text/` will show all the resources
+
+### Get files
+If you want to retrieve an uploaded file, send a GET request to 
+```
+[GET] /api/file/{id}
+``` 
+with `{id}` equal to the number given on `Upload Files` page. 
+If no `{id}` is provided, then `stdClass Object ( )` is returned.

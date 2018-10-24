@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = false;
 
 $route['api/test'] = 'api/test';
 $route['api/text/:num'] = 'api/text/$1';
+$route['api/file/:num'] = 'api/file/$1';
 
 $route['admin'] = 'admin/adminCtrl';
 $route['admin/install']['POST'] = 'admin/install';
@@ -69,6 +70,8 @@ $route['admin/text/edit/post']['POST'] = 'admin/editPost';
 $route['admin/text/edit/remove']['POST'] = 'admin/remove';
 $route['admin/password']['POST'] = 'admin/password';
 $route['admin/upload'] = 'admin/upload';
+$route['admin/upload/add/post']['POST'] = 'admin/uploadPost';
+$route['admin/upload/delete/post']['POST'] = 'admin/uploadDelete';
 
 $route['admin/logout'] = 'admin/logout';
 

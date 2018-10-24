@@ -24,4 +24,19 @@ class apidb extends CI_Model
 
     }
 
+    public function getFile($id)
+    {
+        $this->load->database();
+        if (empty($id)) {
+            return new stdClass();
+        }
+        $query = $this->db->query('SELECT `path`, `filename` FROM `user_files` WHERE `id` = "'.$id.'"');
+        $query = $query->result();
+
+        if (!empty($query[0])) {
+            return $query[0];
+        }
+        return [];
+    }
+
 }

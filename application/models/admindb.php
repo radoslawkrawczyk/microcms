@@ -34,7 +34,9 @@ class admindb extends CI_Model
             $this->db->query('CREATE TABLE `user_files` (
                 `id`	INTEGER PRIMARY KEY AUTOINCREMENT,
                 `path`	TEXT NOT NULL UNIQUE,
-                `date`	INTEGER NOT NULL
+                `date`	INTEGER NOT NULL,
+                `filename`	TEXT NOT NULL,
+                `filesize`	REAL
             );');
         }
         $this->db->from('user_admin');
@@ -108,5 +110,33 @@ class admindb extends CI_Model
         $this->load->database();
         $query = $this->db->query('DELETE FROM `user_data` WHERE id = ' . $textId);
         return $query;
+    }
+
+    public function addFile($path, $filename, $filesize)
+    {
+        $this->load->database();
+        $query = $this->db->insert('user_files', [
+            'path' => $path,
+            'date' => time(),
+            'filename' => $filename,
+            'filesize' => $filesize
+        ]);
+        return true;
+    }
+
+    public function getFiles()
+    {
+        $this->load->database();
+        $query = $this->db->query('SELECT * FROM user_files');
+        $query = $query->result_array();
+
+        return $query;
+    }
+
+    public function removeFile($id) {
+        
+        $this->load->database();
+        $query = $this->db->query('DELETE FROM `user_files` WHERE `id` = '.$id);
+        return true;
     }
 }
